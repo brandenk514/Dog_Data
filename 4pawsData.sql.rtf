@@ -1,0 +1,223 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf340
+{\fonttbl\f0\fnil\fcharset0 Menlo-Bold;\f1\fnil\fcharset0 Menlo-Regular;\f2\fnil\fcharset0 Menlo-Italic;
+}
+{\colortbl;\red255\green255\blue255;\red204\green120\blue50;\red43\green43\blue43;\red169\green183\blue198;
+\red152\green118\blue170;\red104\green151\blue187;\red106\green135\blue89;\red255\green198\blue109;}
+\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f0\b\fs24 \cf2 \cb3 CREATE DATABASE IF NOT EXISTS 
+\f1\b0 \cf4 4pawsData\cf2 ;\uc0\u8232 \u8232 
+\f0\b DROP TABLE 
+\f1\b0 \cf4 employees\cf2 ;\uc0\u8232 
+\f0\b DROP TABLE 
+\f1\b0 \cf4 payments\cf2 ;\uc0\u8232 
+\f0\b DROP TABLE 
+\f1\b0 \cf4 reservations\cf2 ;\uc0\u8232 
+\f0\b DROP TABLE 
+\f1\b0 \cf4 animal\cf2 ;\uc0\u8232 
+\f0\b DROP TABLE 
+\f1\b0 \cf4 vet\cf2 ;\uc0\u8232 
+\f0\b DROP TABLE 
+\f1\b0 \cf4 clients\cf2 ;\uc0\u8232 
+\f0\b DROP TABLE 
+\f1\b0 \cf4 inventory\cf2 ;\uc0\u8232 \u8232 
+\f0\b CREATE TABLE IF NOT EXISTS 
+\f1\b0 \cf4 employees (\uc0\u8232   \cf5 workID    
+\f0\b \cf2 INTEGER
+\f1\b0 ,\uc0\u8232   \cf5 firstname 
+\f0\b \cf2 CHAR
+\f1\b0 \cf4 (\cf6 20\cf4 )\cf2 ,\uc0\u8232   \cf5 lastname  
+\f0\b \cf2 CHAR
+\f1\b0 \cf4 (\cf6 20\cf4 )\cf2 ,\uc0\u8232   \cf5 un        
+\f0\b \cf2 CHAR
+\f1\b0 \cf4 (\cf6 15\cf4 ) 
+\f0\b \cf2 UNIQUE
+\f1\b0 ,\uc0\u8232   \cf5 pw        
+\f0\b \cf2 CHAR
+\f1\b0 \cf4 (\cf6 15\cf4 ) 
+\f0\b \cf2 UNIQUE NOT NULL
+\f1\b0 ,\uc0\u8232   \cf5 superID   
+\f0\b \cf2 INTEGER
+\f1\b0 ,\uc0\u8232   \cf5 onshift   
+\f0\b \cf2 BOOLEAN
+\f1\b0 ,\uc0\u8232   
+\f0\b PRIMARY KEY
+\f1\b0 \cf4 (\cf5 workID\cf4 ))\cf2 ;\uc0\u8232 \u8232 
+\f0\b CREATE TABLE IF NOT EXISTS 
+\f1\b0 \cf4 clients (\uc0\u8232   \cf5 clientID       
+\f0\b \cf2 INTEGER
+\f1\b0 ,\uc0\u8232   \cf5 firstname      
+\f0\b \cf2 CHAR
+\f1\b0 \cf4 (\cf6 20\cf4 )\cf2 ,\uc0\u8232   \cf5 lastname       
+\f0\b \cf2 CHAR
+\f1\b0 \cf4 (\cf6 20\cf4 )\cf2 ,\uc0\u8232   \cf5 cellNum        
+\f0\b \cf2 INTEGER
+\f1\b0 ,\uc0\u8232   \cf5 workNum        
+\f0\b \cf2 INTEGER
+\f1\b0 ,\uc0\u8232   \cf5 address        
+\f0\b \cf2 CHAR
+\f1\b0 \cf4 (\cf6 30\cf4 )\cf2 ,\uc0\u8232   \cf5 email          
+\f0\b \cf2 CHAR
+\f1\b0 \cf4 (\cf6 25\cf4 )\cf2 ,\uc0\u8232   
+\f0\b PRIMARY KEY 
+\f1\b0 \cf4 (\cf5 clientID\cf4 ))\cf2 ;\uc0\u8232 \u8232 
+\f0\b CREATE TABLE IF NOT EXISTS 
+\f1\b0 \cf4 payments (\uc0\u8232   \cf5 paymentID   
+\f0\b \cf2 INTEGER
+\f1\b0 ,\uc0\u8232   \cf5 payeeID     
+\f0\b \cf2 INTEGER
+\f1\b0 ,\uc0\u8232   \cf5 timeCharged 
+\f0\b \cf2 DATE
+\f1\b0 ,\uc0\u8232   \cf5 amount      
+\f0\b \cf2 NUMERIC
+\f1\b0 \cf4 (\cf6 15\cf2 ,\cf6 2\cf4 ) 
+\f0\b \cf2 NOT NULL
+\f1\b0 ,\uc0\u8232   \cf5 timePaid    
+\f0\b \cf2 DATE
+\f1\b0 ,\uc0\u8232   \cf5 paid        
+\f0\b \cf2 BOOLEAN
+\f1\b0 ,\uc0\u8232   
+\f0\b PRIMARY KEY 
+\f1\b0 \cf4 (\cf5 paymentID\cf4 )\cf2 ,\uc0\u8232   
+\f0\b FOREIGN KEY 
+\f1\b0 \cf4 (\cf5 payeeID\cf4 ) 
+\f0\b \cf2 REFERENCES 
+\f1\b0 \cf4 clients(\cf5 clientID\cf4 ))\cf2 ;\uc0\u8232 \u8232 
+\f0\b CREATE TABLE IF NOT EXISTS 
+\f1\b0 \cf4 vet (\uc0\u8232   \cf5 firstName 
+\f0\b \cf2 CHAR
+\f1\b0 \cf4 (\cf6 15\cf4 )\cf2 ,\uc0\u8232   \cf5 lastName 
+\f0\b \cf2 CHAR
+\f1\b0 \cf4 (\cf6 20\cf4 )\cf2 ,\uc0\u8232   \cf5 phoneNum 
+\f0\b \cf2 INTEGER
+\f1\b0 ,\uc0\u8232   \cf5 address 
+\f0\b \cf2 CHAR
+\f1\b0 \cf4 (\cf6 30\cf4 )\cf2 ,\uc0\u8232   
+\f0\b PRIMARY KEY 
+\f1\b0 \cf4 (\cf5 lastName\cf2 , \cf5 phoneNum\cf4 )\uc0\u8232 )\cf2 ;\uc0\u8232 \u8232 
+\f0\b CREATE TABLE IF NOT EXISTS 
+\f1\b0 \cf4 reservations (\uc0\u8232   \cf5 resID 
+\f0\b \cf2 INTEGER
+\f1\b0 ,\uc0\u8232   \cf5 clientID 
+\f0\b \cf2 INTEGER
+\f1\b0 ,\uc0\u8232   \cf5 dateIN 
+\f0\b \cf2 DATE
+\f1\b0 ,\uc0\u8232   \cf5 dateOut 
+\f0\b \cf2 DATE
+\f1\b0 ,\uc0\u8232   \cf5 room 
+\f0\b \cf2 CHAR
+\f1\b0 \cf4 (\cf6 20\cf4 )\cf2 ,\uc0\u8232   
+\f0\b PRIMARY KEY 
+\f1\b0 \cf4 (\cf5 resID\cf4 )\cf2 ,\uc0\u8232   
+\f0\b FOREIGN KEY 
+\f1\b0 \cf4 (\cf5 clientID\cf4 ) 
+\f0\b \cf2 REFERENCES 
+\f1\b0 \cf4 clients(\cf5 clientID\cf4 )\uc0\u8232 )\cf2 ;\uc0\u8232 \u8232 
+\f0\b CREATE TABLE IF NOT EXISTS 
+\f1\b0 \cf4 animal (\uc0\u8232   \cf5 animalID       
+\f0\b \cf2 INTEGER
+\f1\b0 ,\uc0\u8232   \cf5 animalName     
+\f0\b \cf2 CHAR
+\f1\b0 \cf4 (\cf6 10\cf4 ) 
+\f0\b \cf2 NOT NULL
+\f1\b0 ,\uc0\u8232   \cf5 species        
+\f0\b \cf2 CHAR
+\f1\b0 \cf4 (\cf6 10\cf4 ) 
+\f0\b \cf2 NOT NULL
+\f1\b0 ,\uc0\u8232   \cf5 breed          
+\f0\b \cf2 CHAR
+\f1\b0 \cf4 (\cf6 20\cf4 ) 
+\f0\b \cf2 NOT NULL
+\f1\b0 ,\uc0\u8232   \cf5 sex            
+\f0\b \cf2 BOOLEAN
+\f1\b0 ,\uc0\u8232   \cf5 size           
+\f0\b \cf2 CHAR
+\f1\b0 \cf4 (\cf6 10\cf4 ) 
+\f0\b \cf2 NOT NULL
+\f1\b0 ,\uc0\u8232   \cf5 friendly       
+\f0\b \cf2 BOOLEAN
+\f1\b0 ,\uc0\u8232   \cf5 neutered       
+\f0\b \cf2 BOOLEAN
+\f1\b0 ,\uc0\u8232   \cf5 checkedIn      
+\f0\b \cf2 BOOLEAN DEFAULT TRUE
+\f1\b0 ,\uc0\u8232   \cf5 ownerID        
+\f0\b \cf2 INTEGER
+\f1\b0 ,\uc0\u8232   \cf5 ownerLastname  
+\f0\b \cf2 CHAR
+\f1\b0 \cf4 (\cf6 20\cf4 )\cf2 ,\uc0\u8232   \cf5 rate           
+\f0\b \cf2 CHAR
+\f1\b0 \cf4 (\cf6 10\cf4 )\cf2 ,\uc0\u8232   \cf5 vacDate1 
+\f0\b \cf2 DATE
+\f1\b0 ,\uc0\u8232   \cf5 vacDate2 
+\f0\b \cf2 DATE
+\f1\b0 ,\uc0\u8232   \cf5 vacDate3 
+\f0\b \cf2 DATE
+\f1\b0 ,\uc0\u8232   \cf5 medication     
+\f0\b \cf2 TEXT
+\f1\b0 ,\uc0\u8232   \cf5 medInstruction 
+\f0\b \cf2 TEXT
+\f1\b0 ,\uc0\u8232   \cf5 veterinarian   
+\f0\b \cf2 CHAR
+\f1\b0 \cf4 (\cf6 20\cf4 )\cf2 ,\uc0\u8232   \cf5 notes          
+\f0\b \cf2 TEXT
+\f1\b0 ,\uc0\u8232   
+\f0\b PRIMARY KEY 
+\f1\b0 \cf4 (\cf5 animalID\cf4 )\cf2 ,\uc0\u8232   
+\f0\b FOREIGN KEY 
+\f1\b0 \cf4 (\cf5 ownerID\cf4 ) 
+\f0\b \cf2 REFERENCES 
+\f1\b0 \cf4 clients(\cf5 clientID\cf4 )\cf2 ,\uc0\u8232   
+\f0\b FOREIGN KEY 
+\f1\b0 \cf4 (\cf5 veterinarian\cf4 ) 
+\f0\b \cf2 REFERENCES 
+\f1\b0 \cf4 vet(\cf5 lastName\cf4 )\uc0\u8232 \u8232 )\cf2 ;\uc0\u8232 \u8232 
+\f0\b CREATE TABLE IF NOT EXISTS 
+\f1\b0 \cf4 inventory (\uc0\u8232   \cf5 serialNum   
+\f0\b \cf2 INTEGER
+\f1\b0 ,\uc0\u8232   \cf5 brand       
+\f0\b \cf2 CHAR
+\f1\b0 \cf4 (\cf6 20\cf4 )\cf2 ,\uc0\u8232   \cf5 product     
+\f0\b \cf2 CHAR
+\f1\b0 \cf4 (\cf6 20\cf4 )\cf2 ,\uc0\u8232   \cf5 distributor 
+\f0\b \cf2 CHAR
+\f1\b0 \cf4 (\cf6 30\cf4 )\cf2 ,\uc0\u8232   \cf5 price       
+\f0\b \cf2 NUMERIC
+\f1\b0 \cf4 (\cf6 15\cf2 ,\cf6 2\cf4 )\cf2 ,\uc0\u8232   \cf5 quantity    
+\f0\b \cf2 INTEGER
+\f1\b0 ,\uc0\u8232   
+\f0\b PRIMARY KEY 
+\f1\b0 \cf4 (\cf5 serialNum\cf4 )\uc0\u8232 )\cf2 ;\uc0\u8232 \u8232 
+\f0\b INSERT INTO 
+\f1\b0 \cf4 clients (\cf5 clientID\cf2 , \cf5 firstname\cf2 , \cf5 lastname\cf2 , \cf5 cellNum\cf2 , \cf5 workNum\cf2 , \cf5 address\cf2 , \cf5 email\cf4 ) 
+\f0\b \cf2 VALUES 
+\f1\b0 \cf4 (\cf6 234\cf2 , \cf7 'Juan'\cf2 , \cf7 'Garcia'\cf2 , \cf6 123\cf2 , \cf6 456\cf2 , \cf7 '34 Camino Lane'\cf2 , \cf7 'jg@gmail.com'\cf4 )\cf2 ;\uc0\u8232 
+\f0\b INSERT INTO 
+\f1\b0 \cf4 vet 
+\f0\b \cf2 VALUES 
+\f1\b0 \cf4 (\cf7 'Rick'\cf2 , \cf7 'McAllen'\cf2 , \cf6 7654321\cf2 ,\cf7 '43 Help lane'\cf4 )\cf2 ;\uc0\u8232 
+\f0\b INSERT INTO 
+\f1\b0 \cf4 employees 
+\f0\b \cf2 VALUES 
+\f1\b0 \cf4 (\cf6 1234\cf2 , \cf7 'Ali'\cf2 , \cf7 'McCallister'\cf2 , \cf7 'almcc'\cf2 , \cf7 '2'\cf2 , \cf6 1\cf2 , 
+\f0\b TRUE
+\f1\b0 \cf4 )\cf2 ;\uc0\u8232 
+\f0\b INSERT INTO 
+\f1\b0 \cf4 animal 
+\f0\b \cf2 VALUES 
+\f1\b0 \cf4 (\cf6 111\cf2 , \cf7 'Meeko'\cf2 ,\cf7 'K-9'\cf2 ,\cf7 'Husky'\cf2 ,
+\f0\b FALSE 
+\f1\b0 ,\cf7 'Large'\cf2 ,
+\f0\b True
+\f1\b0 ,
+\f0\b True
+\f1\b0 ,
+\f0\b True
+\f1\b0 , \cf6 234\cf2 , \cf7 'Garcia'\cf2 , \cf7 '1st'\cf2 ,
+\f2\i \cf8 now
+\f1\i0 \cf4 ()\cf2 ,
+\f2\i \cf8 now
+\f1\i0 \cf4 ()\cf2 ,
+\f2\i \cf8 now
+\f1\i0 \cf4 ()\cf2 , \cf7 'N/A'\cf2 , \cf7 'N/A'\cf2 ,\cf7 'McAllen'\cf2 , \cf7 'Have fun'\cf4 )\cf2 ;\uc0\u8232 \u8232 \
+}
